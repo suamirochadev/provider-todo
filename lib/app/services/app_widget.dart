@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:provider_todo/app/core/database/sqlite_adm_connection.dart';
 import 'package:provider_todo/app/modules/auth/auth_module.dart';
-import 'package:provider_todo/app/modules/auth/login/login_controller.dart';
-import 'package:provider_todo/app/modules/auth/login/login_page.dart';
 import 'package:provider_todo/app/modules/splash/splash_page.dart';
 
 class AppWidget extends StatefulWidget {
@@ -20,12 +17,12 @@ class _AppWidgetState extends State<AppWidget> {
   void initState() {
     super.initState();
     // Quando o build dessa page terminar, o widgetbinding fará algo
-    WidgetsBinding.instance?.addObserver(sqliteAdmConnection);
+    WidgetsBinding.instance.addObserver(sqliteAdmConnection);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(sqliteAdmConnection);
+    WidgetsBinding.instance.removeObserver(sqliteAdmConnection);
 
     super.dispose();
   }
