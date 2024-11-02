@@ -12,7 +12,12 @@
           "package_name": "br.com.suamirocha.provider_todo"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "683974365463-6cneiik24hhkjj7qo96ki6v5nk4v5ahg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC2smiKVF4Lr83ZYDwMr-xsAF4nabv2A3Q"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683974365463-6cneiik24hhkjj7qo96ki6v5nk4v5ahg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
