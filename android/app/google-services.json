@@ -29,6 +29,13 @@
             {
               "client_id": "683974365463-6cneiik24hhkjj7qo96ki6v5nk4v5ahg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "683974365463-bfgo3evq8dm0p4c03p41pqqtce0cs17b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.suamirochadev.providerTodo"
+              }
             }
           ]
         }
