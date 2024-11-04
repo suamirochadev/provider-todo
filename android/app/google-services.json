@@ -1,43 +1,26 @@
 {
   "project_info": {
-    "project_number": "683974365463",
-    "project_id": "todo-list-provider-10e6b",
-    "storage_bucket": "todo-list-provider-10e6b.firebasestorage.app"
+    "project_number": "234325822457",
+    "project_id": "todo-list-provider-f90fb",
+    "storage_bucket": "todo-list-provider-f90fb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:683974365463:android:71058118a5935474e0a752",
+        "mobilesdk_app_id": "1:234325822457:android:49a85fc234c4bdaeaecb28",
         "android_client_info": {
-          "package_name": "br.com.suamirocha.provider_todo"
+          "package_name": "br.com.suamirochadev.provider_todo"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "683974365463-6cneiik24hhkjj7qo96ki6v5nk4v5ahg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC2smiKVF4Lr83ZYDwMr-xsAF4nabv2A3Q"
+          "current_key": "AIzaSyDnvMoLF7bkA3hjp-it_yn1_bGkTARIlAg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "683974365463-6cneiik24hhkjj7qo96ki6v5nk4v5ahg.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "683974365463-bfgo3evq8dm0p4c03p41pqqtce0cs17b.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "br.com.suamirochadev.providerTodo"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
