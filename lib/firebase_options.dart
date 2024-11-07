@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '234325822457',
     projectId: 'todo-list-provider-f90fb',
     storageBucket: 'todo-list-provider-f90fb.firebasestorage.app',
+    iosClientId: '234325822457-vhm0uc030pdetrnvbo8i9qf3pfrcansf.apps.googleusercontent.com',
     iosBundleId: 'br.com.suamirochadev.providerTodo',
   );
 
