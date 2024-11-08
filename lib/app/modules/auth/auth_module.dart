@@ -12,7 +12,7 @@ class AuthModule extends TodoModule{
       '/register': (c) => const RegisterPage(),
     },
     bindings: [
-      ChangeNotifierProvider(create: (_) => LoginController()),
+      ChangeNotifierProvider(create: (context) => LoginController(userService: context.read())),
       ChangeNotifierProvider(create: (context) => RegisterController(userService: context.read())),
     ],
     );
