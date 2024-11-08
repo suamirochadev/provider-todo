@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_todo/app/core/notifier/default_listener_notifier.dart';
 import 'package:provider_todo/app/core/ui/theme_extensions.dart';
 import 'package:provider_todo/app/core/widget/todo_list_field.dart';
 import 'package:provider_todo/app/core/widget/todo_list_logo.dart';
@@ -31,27 +32,38 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    context.read<RegisterController>().addListener(() {
-      final controller = context.read<RegisterController>();
-      var success = controller.success;
-      var error = controller.error;
-      if (success) {
-        Navigator.of(context).pop();
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Sucesso, sua conta já foi criada. Entre com o login.'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      } else if (error != null && error.isNotEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(error),
-            backgroundColor: Colors.red,
-          ),
-        );
+    final defaultListener = DefaultListenerNotifier(
+        changeNotifier: context.read<RegisterController>());
+    defaultListener.listener(
+      context: context,
+      successCallback: (notifier, listenerInstance) {
+        listenerInstance.dispose(); // é importante fazer o dispose antes do pop
+        //para evitar qualquer tipo de problema.
+        Navigator.of(context).pop(); // retorna para a tela anterior após sucesso.
+      },
+
+      // isso é opcional mas eu vou deixar
+      errorCallback: (notifier, listenerInstance) {
+        // ignore: avoid_print
+        print('Ocorreu um erro, por favor investigue: register controller');
       }
-    });
+    );
+    // context.read<RegisterController>().addListener(() {
+    //   final controller = context.read<RegisterController>();
+    //   var success = controller.success;
+    //   var error = controller.error;
+    //   if (success) {
+    //     Navigator.of(context).pop();
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(
+    //         content: Text('Sucesso, sua conta já foi criada. Entre com o login.'),
+    //         backgroundColor: Colors.green,
+    //       ),
+    //     );
+    //   } else if (error != null && error.isNotEmpty) {
+
+    //   }
+    // });
   }
 
   @override
