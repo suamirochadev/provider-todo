@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_todo/app/core/notifier/default_listener_notifier.dart';
+import 'package:provider_todo/app/core/ui/messages.dart';
 import 'package:provider_todo/app/core/widget/todo_list_field.dart';
 import 'package:provider_todo/app/core/widget/todo_list_logo.dart';
 import 'package:provider_todo/app/modules/auth/login/login_controller.dart';
@@ -19,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailEC = TextEditingController();
   final _passwordEC = TextEditingController();
+  final FocusNode _emailFocus = FocusNode();
 
   @override
   void initState() {
@@ -26,9 +29,17 @@ class _LoginPageState extends State<LoginPage> {
     DefaultListenerNotifier(changeNotifier: context.read<LoginController>())
         .listener(
       context: context,
+      everCallback: (notifier, listenerInstance) {
+        if (notifier is LoginController) {
+          if (notifier.hasInfo) {
+            Messages.of(context).showInfo(notifier.infoMessage!);
+          }
+        }
+      },
       successCallback: (notifier, listenerInstance) {
-        // ignore: avoid_print
-        print('Login efetuado com sucesso');
+        if (kDebugMode) {
+          print('Login efetuado com sucesso');
+        }
       },
     );
   }
@@ -60,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             TodoListField(
                               label: 'Email',
+                              focusNode: _emailFocus,
                               controller: _emailEC,
                               validator: Validatorless.multiple([
                                 Validatorless.required('Email obrigatório.'),
@@ -84,7 +96,20 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    if (_emailEC.text.isNotEmpty) {
+                                      // recuperar senha
+                                      context
+                                          .read<LoginController>()
+                                          .forgotPassword(_emailEC.text);
+                                    } else {
+                                      // automaticamente focar no email
+                                      _emailFocus.requestFocus();
+                                      // mostrar mensagem
+                                      Messages.of(context).showError(
+                                          'Digite um email para recuperar sua senha.');
+                                    }
+                                  },
                                   child: const Text(
                                     'Esqueceu sua senha?',
                                   ),
@@ -139,7 +164,9 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide.none,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.read<LoginController>().googleLogin();
+                              },
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
