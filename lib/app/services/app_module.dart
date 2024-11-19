@@ -7,6 +7,7 @@ import 'package:provider_todo/app/repositories/user/user_repository_impl.dart';
 import 'package:provider_todo/app/services/app_widget.dart';
 import 'package:provider_todo/app/services/user/user_service.dart';
 import 'package:provider_todo/app/services/user/user_service_impl.dart';
+import 'package:provider_todo/app/core/auth/my_auth_provider.dart';
 
 class AppModule extends StatelessWidget {
   const AppModule({super.key});
@@ -30,12 +31,12 @@ class AppModule extends StatelessWidget {
             userRepository: context.read(),
           ),
         ),
-        ChangeNotifierProvider(
-          create: (context) => AuthProvider(
+        ChangeNotifierProvider<MyAuthProvider>(
+          create: (context) => MyAuthProvider(
             firebaseAuth: context.read(),
             userService: context.read(),
-          ),
-          ..loadListener,
+          )
+          ..loadListener(),
           lazy: false,
         )
       ],
