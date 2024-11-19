@@ -22,12 +22,13 @@ class LoginController extends DefaultChangeNotifier {
       final user = await _userService.googleLogin();
 
       if (user != null) {
-        setSuccess('Logando..');
         success();
       } else {
+        _userService.logout();
         setError('Usuário ou senha inválidos. Por favor, tente novamente');
       }
     } on AuthException catch (e) {
+      _userService.logout();
       setError(e.message);
     } finally {
       hideLoading();
