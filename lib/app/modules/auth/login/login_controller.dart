@@ -42,7 +42,7 @@ class LoginController extends DefaultChangeNotifier {
       infoMessage = null;
       notifyListeners();
 
-      final user = await _userService.googleLogin();
+      final user = await _userService.login(email, password);
 
       if (user != null) {
         setSuccess('Logando..');

@@ -3,7 +3,9 @@ import 'package:provider_todo/app/modules/home/home_page.dart';
 
 class HomeModule extends TodoModule {
   HomeModule()
-      : super(bindings: [], routers: {
+      : super(
+        // bindings: [], 
+        routers: {
           '/home': (context) => const HomePage(),
         });
 }
